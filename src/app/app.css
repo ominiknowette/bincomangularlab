@@ -1,0 +1,30 @@
+\h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+mat-card {
+  background: white;
+  color: black;
+  border: 1px solid black;
+}
+
+mat-card-content {
+  padding-top: 1rem;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid black;
+  outline-offset: 3px;
+}

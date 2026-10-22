@@ -1,0 +1,38 @@
+@use '@angular/material' as mat;
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+html {
+  @include mat.theme((
+    typography: Arial,
+    density: 0
+  ));
+
+  @include mat.button-overrides((
+    outlined-label-text-color: black,
+    outlined-outline-color: black,
+    outlined-disabled-label-text-color: black,
+    outlined-disabled-outline-color: black,
+    outlined-state-layer-color: black
+  ));
+}
+
+body {
+  margin: 0;
+  background: white;
+  color: black;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+}
+
+.form-control,
+.form-control:focus {
+  color: black;
+  background: white;
+  border: 1px solid black;
+  box-shadow: none;
+}
+
+.form-control::placeholder {
+  color: black;
+  opacity: 1;
+}

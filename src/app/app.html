@@ -1,0 +1,124 @@
+<main class="container py-4">
+  <h1>Bincom Academy course enrolment</h1>
+
+  <p>
+    Select courses and watch the shared summary update.
+  </p>
+
+  <div class="row g-4">
+    <!-- COURSE CATALOGUE -->
+    <section
+      class="col-12 col-md-7"
+      aria-labelledby="catalogue"
+    >
+      <h2 id="catalogue">
+        Available courses
+      </h2>
+
+      <label for="search">
+        Search courses
+      </label>
+
+      <input
+        id="search"
+        type="search"
+        class="form-control mb-3"
+        [(ngModel)]="search"
+        placeholder="Type a course title"
+      >
+
+      @for (
+        course of filteredCourses;
+        track course.id
+      ) {
+        <mat-card
+          appearance="outlined"
+          class="mb-3"
+        >
+          <mat-card-header>
+            <mat-card-title>
+              {{ course.title }}
+            </mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>
+              {{ course.hours }} learning hours
+            </p>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button
+              mat-stroked-button
+              (click)="add(course)"
+              [disabled]="isSelected(course.id)"
+            >
+              {{
+                isSelected(course.id)
+                  ? 'Selected'
+                  : 'Add course'
+              }}
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      } @empty {
+        <p>
+          No courses match your search.
+        </p>
+      }
+    </section>
+
+    <!-- ENROLMENT SUMMARY -->
+    <section
+      class="col-12 col-md-5"
+      aria-labelledby="summary"
+    >
+      <h2 id="summary">
+        Enrolment summary
+      </h2>
+
+      <p
+        id="totals"
+        aria-live="polite"
+      >
+        Courses: {{ count() }}
+        |
+        Total hours: {{ hours() }}
+      </p>
+
+      <ul class="list-unstyled">
+        @for (
+          course of courses();
+          track course.id
+        ) {
+          <li class="mb-3">
+            <span>
+              {{ course.title }}
+            </span>
+
+            <button
+              mat-stroked-button
+              class="ms-2"
+              [attr.aria-label]="'Remove ' + course.title"
+              (click)="remove(course.id)"
+            >
+              Remove
+            </button>
+          </li>
+        } @empty {
+          <li>
+            No courses selected.
+          </li>
+        }
+      </ul>
+
+      <button
+        mat-stroked-button
+        (click)="clear()"
+        [disabled]="count() === 0"
+      >
+        Clear selection
+      </button>
+    </section>
+  </div>
+</main>
